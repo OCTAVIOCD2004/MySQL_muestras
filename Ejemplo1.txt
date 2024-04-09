@@ -1,0 +1,168 @@
+Enter password: ***********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| ddl                |
+| ejemp503           |
+| ejemp50302         |
+| ejemplo1           |
+| exposición         |
+| information_schema |
+| mydb               |
+| mysql              |
+| performance_schema |
+| presentaciones     |
+| prueba             |
+| prueba503          |
+| sys                |
+| vivienda           |
++--------------------+
+14 rows in set (0.00 sec)
+
+mysql> use ejemplo1;
+Database changed
+mysql> show tables;
+Empty set (0.02 sec)
+
+mysql> create table usuarios(
+    -> id INT(7) NOT NULL PRIMARY KEY,
+    -> nombre VARCHAR(255),
+    -> correo VARCHAR(255)
+    -> );
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_ejemplo1 |
++--------------------+
+| usuarios           |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> describe usuarios;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| id     | int          | NO   | PRI | NULL    |       |
+| nombre | varchar(255) | YES  |     | NULL    |       |
+| correo | varchar(255) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+3 rows in set (0.88 sec)
+
+mysql> create table vehiculos(
+    -> patente CHAR(6) NOT NULL,
+    -> tipo CHAR(4),
+    -> horallegada TIME NOT NULL,
+    -> horasalida TIME,
+    -> PRIMARY KEY(patente,horallegada)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> describe vehiculos;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| patente     | char(6) | NO   | PRI | NULL    |       |
+| tipo        | char(4) | YES  |     | NULL    |       |
+| horallegada | time    | NO   | PRI | NULL    |       |
+| horasalida  | time    | YES  |     | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create table empleado(
+    -> IdEmpleado INT AUTO_INCREMENT PRIMARY KEY,
+    -> primerNombre VARCHAR(10),
+    -> segundoNombre VARCHAR(10),
+    -> apellidoP VARCHAR(20),
+    -> apellidoM VARCHAR(20),
+    -> edad INT);
+Query OK, 0 rows affected (0.80 sec)
+
+mysql> describe empleado;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| IdEmpleado    | int         | NO   | PRI | NULL    | auto_increment |
+| primerNombre  | varchar(10) | YES  |     | NULL    |                |
+| segundoNombre | varchar(10) | YES  |     | NULL    |                |
+| apellidoP     | varchar(20) | YES  |     | NULL    |                |
+| apellidoM     | varchar(20) | YES  |     | NULL    |                |
+| edad          | int         | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> create table empresa(
+    -> Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    -> ciudad VARCHAR(25) NOT NULL,
+    -> pais VARCHAR(25) NOT NULL,
+    -> telefono VARCHAR(10) NOT NULL)
+    -> AUTO_INCREMENT=20;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> describe empresa;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| Id       | int         | NO   | PRI | NULL    | auto_increment |
+| ciudad   | varchar(25) | NO   |     | NULL    |                |
+| pais     | varchar(25) | NO   |     | NULL    |                |
+| telefono | varchar(10) | NO   |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> create table estudiante(
+    -> matricula INT AUTO_INCREMENT PRIMARY KEY COMMENT 'id_del_alumno',
+    -> carrera VARCHAR(20),
+    -> promedio INT NOT NULL,
+    -> grupo INT);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> describe estudiante;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| matricula | int         | NO   | PRI | NULL    | auto_increment |
+| carrera   | varchar(20) | YES  |     | NULL    |                |
+| promedio  | int         | NO   |     | NULL    |                |
+| grupo     | int         | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_ejemplo1 |
++--------------------+
+| empleado           |
+| empresa            |
+| estudiante         |
+| usuarios           |
+| vehiculos          |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> drop table vehiculos;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_ejemplo1 |
++--------------------+
+| empleado           |
+| empresa            |
+| estudiante         |
+| usuarios           |
++--------------------+
+4 rows in set (0.00 sec)
